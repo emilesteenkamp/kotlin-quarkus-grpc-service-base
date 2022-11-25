@@ -3,13 +3,29 @@ syntax = "proto3";
 package me.payment;
 
 service PaymentService {
-  rpc GetPayment(GetPaymentRequest) returns (PaymentMessage)
+  rpc GetPayment(GetPaymentRequest) returns (PaymentMessage);
+  rpc GetPaymentList(GetPaymentListRequest) returns (GetPaymentListResponse);
+  rpc PlacePayment(PlacePaymentRequest) returns (PaymentMessage);
 }
 
-// Messages.
+// Messages
 
-message PaymentMessage {}
+message PaymentMessage {
+  string id = 1;
+}
 
-// Requests.
+// Requests
 
-message GetPaymentRequest {}
+message GetPaymentRequest {
+  string payment_id = 1;
+}
+
+message GetPaymentListRequest {}
+
+message PlacePaymentRequest {}
+
+// Responses
+
+message GetPaymentListResponse {
+  repeated PaymentMessage payment_message = 1;
+}

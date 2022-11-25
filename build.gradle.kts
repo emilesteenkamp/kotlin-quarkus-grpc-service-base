@@ -18,8 +18,11 @@ dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-kotlin")
     implementation("io.quarkus:quarkus-grpc")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
+    implementation("io.quarkus:quarkus-resteasy-reactive")
+
+    // Kotlin dependencies
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Test dependencies
     testImplementation("io.quarkus:quarkus-junit5")
