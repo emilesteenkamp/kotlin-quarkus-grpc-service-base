@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package me.payment;
+
+service PaymentService {
+  rpc GetPayment(GetPaymentRequest) returns (PaymentMessage)
+}
+
+// Messages.
+
+message PaymentMessage {}
+
+// Requests.
+
+message GetPaymentRequest {}
