@@ -12,9 +12,9 @@ import me.service.application.service.PaymentApplicationService
 
 @GrpcService
 class PaymentGrpcService(
-    // Services.
+    // Services
     private val paymentService: PaymentApplicationService,
-    // Mappers.
+    // Mappers
     private val paymentMapper: PaymentMapper
 ) : PaymentService {
     @Blocking

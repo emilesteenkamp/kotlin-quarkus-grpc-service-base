@@ -8,6 +8,7 @@ import javax.transaction.Transactional
 
 @ApplicationScoped
 class PaymentApplicationService(
+    // Repositories
     private val paymentRepository: PaymentRepository
 ) {
     fun getPayment(id: Long): PaymentEntity = paymentRepository.findById(id)
