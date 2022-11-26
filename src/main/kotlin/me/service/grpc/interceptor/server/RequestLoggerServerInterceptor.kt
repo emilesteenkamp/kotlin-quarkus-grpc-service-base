@@ -1,4 +1,4 @@
-package me.service.grpc.interceptor
+package me.service.grpc.interceptor.server
 
 import io.grpc.*
 import io.quarkus.grpc.GlobalInterceptor
@@ -95,13 +95,6 @@ class RequestLoggerServerInterceptor : ServerInterceptor {
                 statusMap["code"] = status.code.name
                 status.description?.let { statusMap["description"] = it }
             }
-        }
-
-        fun logCompleted(status: Status) {
-            log.info(
-                "Completed {} call to method {} with status {}.",
-                *requestContext(requestKey, method.fullMethodName, status)
-            )
         }
 
         fun logCompleted() {
