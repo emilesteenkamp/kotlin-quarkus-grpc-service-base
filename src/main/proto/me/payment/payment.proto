@@ -12,6 +12,8 @@ service PaymentService {
 
 message PaymentMessage {
   string id = 1;
+  int32 amount = 2;
+  string currency = 3;
 }
 
 // Requests
@@ -22,7 +24,10 @@ message GetPaymentRequest {
 
 message GetPaymentListRequest {}
 
-message PlacePaymentRequest {}
+message PlacePaymentRequest {
+  int32 amount = 2;
+  string currency = 3;
+}
 
 // Responses
 

@@ -1,6 +1,7 @@
 package me.service.grpc.service
 
 import io.quarkus.grpc.GrpcService
+import io.smallrye.common.annotation.Blocking
 import io.smallrye.mutiny.Uni
 import me.payment.Payment
 import me.payment.Payment.GetPaymentListResponse
@@ -16,14 +17,16 @@ class PaymentGrpcService(
     // Mappers.
     private val paymentMapper: PaymentMapper
 ) : PaymentService {
+    @Blocking
     override fun getPayment(request: Payment.GetPaymentRequest?): Uni<PaymentMessage> {
-        val id = request!!.paymentId
+        val id = request!!.paymentId.toLong()
 
         val payment = paymentService.getPayment(id)
 
         return Uni.createFrom().item { paymentMapper.toPaymentMessage(payment) }
     }
 
+    @Blocking
     override fun getPaymentList(request: Payment.GetPaymentListRequest?): Uni<Payment.GetPaymentListResponse> {
         val paymentList = paymentService.getPaymentList()
 
@@ -34,8 +37,15 @@ class PaymentGrpcService(
         }
     }
 
+    @Blocking
     override fun placePayment(request: Payment.PlacePaymentRequest?): Uni<PaymentMessage> {
-        val payment = paymentService.placePayment()
+        val amount = request!!.amount
+        val currency = request.currency
+
+        val payment = paymentService.placePayment(
+            amount,
+            currency
+        )
 
         return Uni.createFrom().item { paymentMapper.toPaymentMessage(payment) }
     }
